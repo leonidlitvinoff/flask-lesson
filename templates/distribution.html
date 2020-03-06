@@ -2,7 +2,7 @@
 
 {% block content %}
 <h3>Размещение по каютам</h3>
-{% for item in range(length) %}
-    <h5>{{ data[item] }} - Каюта №{{ item + 1 }}{% if item == 0 %} - капитан корабля{% endif %}</h5>
+{% for item in data %}
+    <h5>{{ item }} - Каюта №{{ loop.index }}{% if loop.first %} - капитан корабля{% endif %}</h5>
 {% endfor %}
 {% endblock %}

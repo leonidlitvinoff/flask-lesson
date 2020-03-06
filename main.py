@@ -8,7 +8,7 @@ COMMAND = ['Артем',
 
 @app.route('/distribution')
 def distribution():
-    return render_template('distribution.html', title='Каюты', data=COMMAND, length=len(COMMAND))
+    return render_template('distribution.html', title='Каюты', data=COMMAND)
 
 
 if __name__ == '__main__':
