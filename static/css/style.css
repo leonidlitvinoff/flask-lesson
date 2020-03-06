@@ -1,4 +1,11 @@
-h4 {
+.h4 {
     color: grey;
     margin-left: 20px;
+}
+
+
+.logo {
+    background-image: url(logo.png);
+    width: 150px;
+    height: 50px;
 }
