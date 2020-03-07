@@ -1,17 +1,13 @@
 from flask import Flask, render_template, url_for, redirect, request
-import os
+import json
 app = Flask(__name__)
 
 
-@app.route('/galery', methods=['POST', 'GET'])
-def galery():
-    config = {'title': 'Красная планета'}
-    if request.method == 'POST':
-        f = request.files['file']
-        with open(f'static\\img\\slides\\{f.filename}', 'wb') as doc:
-            doc.write(f.read())
-    config['slides'] = [f'static\\img\\slides\\{i}' for i in os.listdir('static\\img\\slides\\')]
-    return render_template('galery.html', **config)
+@app.route('/member')
+def member():
+    config = {'title': 'Member',
+              'persons': json.load(open('templates\\command.json'))}
+    return render_template('member.html', **config)
 
 
 
