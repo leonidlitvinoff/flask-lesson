@@ -1,23 +1,18 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, request
+import os
 app = Flask(__name__)
 
 
-@app.route('/table/<sex>/<int:age>')
-def table(sex, age):
-    config = {'title': 'Каюты'}
-    if sex == 'female' and age >= 21:
-        config['color'] = url_for('static', filename='img/female_grand.jpg')
-        config['person'] = url_for('static', filename='img/big.jpg')
-    elif sex == 'female' and age < 21:
-        config['color'] = url_for('static', filename='img/female_small.jpg')
-        config['person'] = url_for('static', filename='img/small.jpg')
-    elif sex == 'male' and age < 21:
-        config['color'] = url_for('static', filename='img/male_small.jpg')
-        config['person'] = url_for('static', filename='img/small.jpg')
-    else:
-        config['color'] = url_for('static', filename='img/male_grand.jpg')
-        config['person'] = url_for('static', filename='img/big.jpg')
-    return render_template('table.html', **config)
+@app.route('/galery', methods=['POST', 'GET'])
+def galery():
+    config = {'title': 'Красная планета'}
+    if request.method == 'POST':
+        f = request.files['file']
+        with open(f'static\\img\\slides\\{f.filename}', 'wb') as doc:
+            doc.write(f.read())
+    config['slides'] = [f'static\\img\\slides\\{i}' for i in os.listdir('static\\img\\slides\\')]
+    return render_template('galery.html', **config)
+
 
 
 if __name__ == '__main__':
