@@ -3,9 +3,28 @@
 {% block content %}
 <h2>Оформление каюты</h2>
 <table>
-  <tr>
-    <td><img src={{ color }} alt="здесь должна была быть картинка"></td>
-    <td><img src={{ person }} alt="здесь должна была быть картинка"></td>
-  </tr>
+  {% if sex == 'female' and age >= 21 %}
+    <tr>
+      <td><img src='/static/img/female_grand.jpg' alt="здесь должна была быть картинка"></td>
+      <td><img src='/static/img/big.jpg' alt="здесь должна была быть картинка"></td>
+    </tr>
+  {% elif sex == 'female' and age < 21 %}
+    <tr>
+      <td><img src='/static/img/female_small.jpg' alt="здесь должна была быть картинка"></td>
+      <td><img src='/static/img/small.jpg' alt="здесь должна была быть картинка"></td>
+    </tr>
+  {% elif sex == 'male' and age < 21 %}
+    <tr>
+      <td><img src='/static/img/male_small.jpg' alt="здесь должна была быть картинка"></td>
+      <td><img src='/static/img/small.jpg' alt="здесь должна была быть картинка"></td>
+    </tr>
+  {% elif sex == 'male' and age >= 21 %}
+    <tr>
+      <td><img src='/static/img/male_grand.jpg' alt="здесь должна была быть картинка"></td>
+      <td><img src='/static/img/big.jpg' alt="здесь должна была быть картинка"></td>
+    </tr>
+  {% else %}
+    <h3>Error</h3>
+  {% endif %}
 </table>
 {% endblock %}
